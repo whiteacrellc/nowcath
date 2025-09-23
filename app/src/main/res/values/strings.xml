@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">Cath Now</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Main App Strings -->
+    <string name="app_title">Cath Alert</string>
+    <string name="alarm_interval">Alarm Interval</string>
+    <string name="interval_hint">HH:MM</string>
+    <string name="interval_description">Enter the alarm interval in the format HH:MM</string>
+    <string name="start_alarm">Start Alarm</string>
+    <string name="update_alarm">Update Alarm</string>
+    <string name="next_alarm">Next Alarm</string>
+    <string name="no_alarm_set">No alarm set</string>
+    <string name="ready_to_set_alarm">Ready to set alarm</string>
+    <string name="alarm_active">Alarm active - repeats every %s</string>
+
+    <!-- Settings -->
+    <string name="sound_settings">Sound Settings</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="theme_light">Theme: Light</string>
+    <string name="theme_dark">Theme: Dark</string>
+    <string name="theme_auto">Theme: Auto</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+
+    <!-- Sound Settings -->
+    <string name="alert_sound">Alert Sound</string>
+    <string name="configure_alert_sounds">Configure Alert Sounds</string>
+    <string name="choose_alarm_sound">Choose your preferred alarm sound for medical reminders</string>
+    <string name="test_sound">Test Sound</string>
+    <string name="enable_audio">Enable Audio</string>
+    <string name="audio_status">Audio Status</string>
+    <string name="status_ready">Ready</string>
+    <string name="status_disabled">Disabled</string>
+    <string name="selected_sound">Selected Sound:</string>
+    <string name="fallback">Fallback:</string>
+    <string name="haptic_feedback">Haptic Feedback</string>
+
+    <!-- Sound Options -->
+    <string name="alarm_1">Alarm 1</string>
+    <string name="alarm_2">Alarm 2</string>
+    <string name="alarm_3">Alarm 3</string>
+    <string name="alarm_4">Alarm 4</string>
+
+    <!-- Notifications -->
+    <string name="cath_now_notification_title">Cath Now</string>
+    <string name="cath_now_notification_body">Time to cath!</string>
+    <string name="notification_channel_name">Cath Reminders</string>
+    <string name="notification_channel_description">Medical catheter change reminders</string>
+
+    <!-- Error Messages -->
+    <string name="invalid_input">Invalid Input</string>
+    <string name="enter_valid_time">Please enter a valid time interval.</string>
+    <string name="enter_time_format">Please enter time in HH:MM format (e.g., 4:00).</string>
+    <string name="audio_setup_required">Audio Setup Required</string>
+    <string name="audio_setup_message">Unable to set up audio playbook. You can continue using the app with haptic feedback only, or try enabling audio again.</string>
+    <string name="try_again">Try Again</string>
+    <string name="continue_without_sound">Continue Without Sound</string>
+
+    <!-- Fragment Navigation (Legacy Template) -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <!-- Privacy Policy Content -->
+    <string name="white_acre_software">White Acre Software LLC</string>
+    <string name="effective_date">Effective Date: September 2025</string>
+    <string name="privacy_commitment">Privacy Commitment</string>
+    <string name="data_collection">Data Collection</string>
+    <string name="local_data_storage">Local Data Storage</string>
+    <string name="system_permissions">System Permissions</string>
+    <string name="third_party_services">Third-Party Services</string>
+    <string name="medical_disclaimer">Medical Disclaimer</string>
+    <string name="contact_information">Contact Information</string>
+</resources>
