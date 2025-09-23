@@ -16,6 +16,7 @@ import org.tomw.cathnow.R
 import org.tomw.cathnow.data.PreferencesManager
 import org.tomw.cathnow.data.SoundOption
 import java.util.concurrent.TimeUnit
+import androidx.core.net.toUri
 
 class CathNotificationManager(private val context: Context) {
 
@@ -55,7 +56,7 @@ class CathNotificationManager(private val context: Context) {
         return when (selectedSound) {
             SoundOption.ALARM_1, SoundOption.ALARM_2 -> {
                 // Try to use custom sound from assets or raw folder
-                Uri.parse("android.resource://${context.packageName}/${R.raw.alarm}")
+                "android.resource://${context.packageName}/${R.raw.alarm1}".toUri()
             }
             else -> RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         }
