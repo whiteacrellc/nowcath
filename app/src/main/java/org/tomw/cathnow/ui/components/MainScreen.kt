@@ -1,6 +1,7 @@
 package org.tomw.cathnow.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,7 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -46,6 +50,8 @@ fun MainScreen(
     onNavigateToPrivacy: () -> Unit
 ) {
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
     val preferencesManager = remember { PreferencesManager(context) }
     val audioManager = remember { CathAudioManager(context) }
     val notificationManager = remember { CathNotificationManager(context) }
@@ -198,6 +204,10 @@ fun MainScreen(
 
                     Button(
                         onClick = {
+                            // Hide keyboard when button is pressed
+                            focusManager.clearFocus()
+                            keyboardController?.hide()
+
                             startButtonTapped(
                                 intervalText = intervalText,
                                 onError = { message ->
@@ -325,10 +335,25 @@ fun MainScreen(
     }
 
     // Settings dropdown menu
-    DropdownMenu(
-        expanded = showingSettingsMenu,
-        onDismissRequest = { showingSettingsMenu = false }
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopEnd
     ) {
+        DropdownMenu(
+            expanded = showingSettingsMenu,
+            onDismissRequest = { showingSettingsMenu = false },
+            modifier = Modifier
+                .background(
+                    color = Color.Gray,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .border(
+                    width = 2.dp,
+                    color = Color.Black,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                .padding(4.dp)
+        ) {
         DropdownMenuItem(
             text = { Text(stringResource(R.string.sound_settings)) },
             onClick = {
@@ -352,6 +377,7 @@ fun MainScreen(
                 onNavigateToPrivacy()
             }
         )
+        }
     }
 
     // Error dialog
