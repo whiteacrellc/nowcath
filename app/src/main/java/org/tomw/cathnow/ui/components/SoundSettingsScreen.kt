@@ -34,6 +34,13 @@ fun SoundSettingsScreen(
     val preferencesManager = remember { PreferencesManager(context) }
     val audioManager = remember { CathAudioManager(context) }
 
+    // Clean up audio resources when screen is disposed
+    DisposableEffect(audioManager) {
+        onDispose {
+            audioManager.cleanup()
+        }
+    }
+
     var selectedSoundOption by remember { mutableStateOf(preferencesManager.selectedSound) }
     var hasAudioPermission by remember { mutableStateOf(audioManager.hasAudioPermission()) }
     var showingAudioPermissionAlert by remember { mutableStateOf(false) }

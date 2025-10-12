@@ -56,6 +56,13 @@ fun MainScreen(
     val audioManager = remember { CathAudioManager(context) }
     val notificationManager = remember { CathNotificationManager(context) }
 
+    // Clean up audio resources when screen is disposed
+    DisposableEffect(audioManager) {
+        onDispose {
+            audioManager.cleanup()
+        }
+    }
+
     var intervalText by remember { mutableStateOf(preferencesManager.intervalText) }
     var nextAlertDate by remember { mutableStateOf<Date?>(null) }
     var intervalSeconds by remember { mutableLongStateOf(0L) }

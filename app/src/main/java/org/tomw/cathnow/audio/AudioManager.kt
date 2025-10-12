@@ -130,4 +130,15 @@ class CathAudioManager(private val context: Context) {
         mediaPlayer = null
     }
 
+    fun cleanup() {
+        try {
+            releaseMediaPlayer()
+            // Release audio focus
+            @Suppress("DEPRECATION")
+            audioManager.abandonAudioFocus(null)
+        } catch (e: Exception) {
+            // Silent cleanup failure
+        }
+    }
+
 }
