@@ -50,7 +50,6 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            val currentTheme by remember { mutableStateOf(themeManager.currentTheme) }
 
             // Observe theme changes
             LaunchedEffect(themeManager.currentTheme) {
