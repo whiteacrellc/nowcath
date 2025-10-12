@@ -49,6 +49,16 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
+        <!-- Alarm receiver for repeating notifications -->
+        <receiver
+            android:name=".notifications.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="org.tomw.cathnow.ALARM_TRIGGERED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
