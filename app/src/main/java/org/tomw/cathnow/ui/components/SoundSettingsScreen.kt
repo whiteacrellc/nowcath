@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.VolumeOff
-import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -67,7 +67,7 @@ fun SoundSettingsScreen(
                 title = { Text(stringResource(R.string.sound_settings)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -88,7 +88,7 @@ fun SoundSettingsScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Icon(
-                        Icons.Default.VolumeUp,
+                        Icons.AutoMirrored.Filled.VolumeUp,
                         contentDescription = null,
                         modifier = Modifier.size(40.dp),
                         tint = MaterialTheme.colorScheme.tertiary
@@ -123,7 +123,7 @@ fun SoundSettingsScreen(
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
-                                Icons.Default.VolumeUp,
+                                Icons.AutoMirrored.Filled.VolumeUp,
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.tertiary,
                                 modifier = Modifier.size(24.dp)
@@ -204,7 +204,7 @@ fun SoundSettingsScreen(
                             }
                         ) {
                             Icon(
-                                if (hasAudioPermission) Icons.Default.PlayArrow else Icons.Default.VolumeOff,
+                                if (hasAudioPermission) Icons.Default.PlayArrow else Icons.AutoMirrored.Filled.VolumeOff,
                                 contentDescription = null,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -221,7 +221,7 @@ fun SoundSettingsScreen(
                                 modifier = Modifier.padding(top = 8.dp)
                             ) {
                                 Icon(
-                                    Icons.Default.VolumeOff,
+                                    Icons.AutoMirrored.Filled.VolumeOff,
                                     contentDescription = null,
                                     tint = MaterialTheme.colorScheme.tertiary,
                                     modifier = Modifier.size(16.dp)

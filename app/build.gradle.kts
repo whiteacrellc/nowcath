@@ -14,7 +14,9 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        // Get API_KEY from environment variable, fallback to gradle.properties, then empty string
+        val apiKey = System.getenv("API_KEY") ?: findProperty("apiKey")?.toString() ?: ""
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,6 +39,7 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"

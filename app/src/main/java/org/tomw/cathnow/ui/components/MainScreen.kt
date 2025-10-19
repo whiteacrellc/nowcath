@@ -444,7 +444,7 @@ private fun updateCountdown(
     intervalSeconds: Long,
     onCountdownUpdate: (String) -> Unit,
     onNextAlertUpdate: (Date?) -> Unit,
-    audioManager: CathAudioManager,
+    @Suppress("UNUSED_PARAMETER") audioManager: CathAudioManager,
     hasAudioPermission: Boolean
 ) {
     val nextAlert = nextAlertDate
