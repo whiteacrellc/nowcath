@@ -8,14 +8,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Surface
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.launch
+import org.tomw.cathnow.ui.components.AppNavigationDrawer
 import org.tomw.cathnow.ui.components.MainScreen
 import org.tomw.cathnow.ui.components.PrivacyScreen
 import org.tomw.cathnow.ui.components.SoundSettingsScreen
@@ -71,37 +76,59 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CathNowApp(themeManager: ThemeManager) {
     val navController = rememberNavController()
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
 
-    NavHost(
-        navController = navController,
-        startDestination = "main"
-    ) {
-        composable("main") {
-            MainScreen(
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            AppNavigationDrawer(
                 themeManager = themeManager,
                 onNavigateToSounds = {
-                    navController.navigate("sounds")
+                    scope.launch {
+                        drawerState.close()
+                        navController.navigate("sounds")
+                    }
                 },
                 onNavigateToPrivacy = {
-                    navController.navigate("privacy")
+                    scope.launch {
+                        drawerState.close()
+                        navController.navigate("privacy")
+                    }
                 }
             )
         }
+    ) {
+        NavHost(
+            navController = navController,
+            startDestination = "main"
+        ) {
+            composable("main") {
+                MainScreen(
+                    themeManager = themeManager,
+                    onOpenDrawer = {
+                        scope.launch {
+                            drawerState.open()
+                        }
+                    }
+                )
+            }
 
-        composable("sounds") {
-            SoundSettingsScreen(
-                onNavigateBack = {
-                    navController.popBackStack()
-                }
-            )
-        }
+            composable("sounds") {
+                SoundSettingsScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    }
+                )
+            }
 
-        composable("privacy") {
-            PrivacyScreen(
-                onNavigateBack = {
-                    navController.popBackStack()
-                }
-            )
+            composable("privacy") {
+                PrivacyScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    }
+                )
+            }
         }
     }
 }

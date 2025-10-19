@@ -1,15 +1,13 @@
 package org.tomw.cathnow.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.outlined.Circle
@@ -18,9 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -46,8 +42,7 @@ import java.util.*
 @Composable
 fun MainScreen(
     themeManager: ThemeManager,
-    onNavigateToSounds: () -> Unit,
-    onNavigateToPrivacy: () -> Unit
+    onOpenDrawer: () -> Unit
 ) {
     val context = LocalContext.current
     val focusManager = LocalFocusManager.current
@@ -72,7 +67,6 @@ fun MainScreen(
     var errorMessage by remember { mutableStateOf("") }
     var selectedSoundOption by remember { mutableStateOf(preferencesManager.selectedSound) }
     var hasAudioPermission by remember { mutableStateOf(audioManager.hasAudioPermission()) }
-    var showingSettingsMenu by remember { mutableStateOf(false) }
 
     // Timer to update countdown
     LaunchedEffect(Unit) {
@@ -120,16 +114,18 @@ fun MainScreen(
         ) {
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Header Section
+            // Header Section with Hamburger Menu
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = { showingSettingsMenu = true }) {
+                IconButton(onClick = onOpenDrawer) {
                     Icon(
-                        Icons.Default.MoreVert,
-                        contentDescription = "Settings",
-                        tint = MaterialTheme.colorScheme.primary
+                        Icons.Default.Menu,
+                        contentDescription = "Menu",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(28.dp)
                     )
                 }
             }
@@ -338,52 +334,6 @@ fun MainScreen(
             }
 
             Spacer(modifier = Modifier.height(40.dp))
-        }
-    }
-
-    // Settings dropdown menu
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopEnd
-    ) {
-        DropdownMenu(
-            expanded = showingSettingsMenu,
-            onDismissRequest = { showingSettingsMenu = false },
-            modifier = Modifier
-                .background(
-                    color = Color.Gray,
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .border(
-                    width = 2.dp,
-                    color = Color.Black,
-                    shape = RoundedCornerShape(8.dp)
-                )
-                .padding(4.dp)
-        ) {
-        DropdownMenuItem(
-            text = { Text(stringResource(R.string.sound_settings)) },
-            onClick = {
-                showingSettingsMenu = false
-                onNavigateToSounds()
-            }
-        )
-
-        DropdownMenuItem(
-            text = { Text("Theme: ${themeManager.currentTheme.displayName}") },
-            onClick = {
-                showingSettingsMenu = false
-                themeManager.cycleTheme()
-            }
-        )
-
-        DropdownMenuItem(
-            text = { Text(stringResource(R.string.privacy_policy)) },
-            onClick = {
-                showingSettingsMenu = false
-                onNavigateToPrivacy()
-            }
-        )
         }
     }
 
