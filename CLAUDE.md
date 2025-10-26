@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Cath Now is an Android application that reminds people who use intermittent catheters when to cath. It's a privacy-focused app that collects no personal information and doesn't connect to the internet at all.
+Cath Rmdr is an Android application that reminds people who use intermittent catheters when to cath. It's a privacy-focused app that collects no personal information and doesn't connect to the internet at all.
 
-**Package name**: `org.tomw.cathnow`
+**Package name**: `org.tomw.cathrmdr`
 **Min SDK**: 29 (Android 10)
 **Target SDK**: 34 (Android 14)
 
@@ -96,7 +96,7 @@ Three main screens:
 ### Source Structure
 
 ```
-app/src/main/java/org/tomw/cathnow/
+app/src/main/java/org/tomw/cathrmdr/
 ├── MainActivity.kt                    # Entry point, navigation setup
 ├── audio/
 │   └── AudioManager.kt                # Sound playback and haptics

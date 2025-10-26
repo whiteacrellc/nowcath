@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Cath Now</string>
+    <string name="app_name">Cath Rmdr</string>
     <string name="action_settings">Settings</string>
 
     <!-- Main App Strings -->
-    <string name="app_title">Cath Alert</string>
+    <string name="app_title">Cath Rmdr</string>
     <string name="alarm_interval">Alarm Interval</string>
     <string name="interval_hint">HH:MM</string>
     <string name="interval_description">Enter the alarm interval in the format HH:MM</string>
@@ -43,7 +43,7 @@
     <string name="alarm_4">Alarm 4</string>
 
     <!-- Notifications -->
-    <string name="cath_now_notification_title">Cath Now</string>
+    <string name="cath_now_notification_title">Cath Rmdr</string>
     <string name="cath_now_notification_body">Time to cath!</string>
     <string name="notification_channel_name">Cath Reminders</string>
     <string name="notification_channel_description">Medical catheter change reminders</string>

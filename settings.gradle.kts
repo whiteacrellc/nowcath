@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Cath Now"
+rootProject.name = "Cath Rmdr"
 include(":app")
