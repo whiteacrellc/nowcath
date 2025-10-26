@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "org.tomw.cathnow"
+    namespace = "org.tomw.cathrmdr"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "org.tomw.cathnow"
+        applicationId = "org.tomw.cathrmdr"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
