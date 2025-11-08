@@ -63,13 +63,9 @@ class CathNotificationManager(private val context: Context) {
 
     private fun getNotificationSound(): Uri? {
         val selectedSound = SoundOption.fromDisplayName(preferencesManager.selectedSound)
-        return when (selectedSound) {
-            SoundOption.ALARM_1, SoundOption.ALARM_2 -> {
-                // Try to use custom sound from assets or raw folder
-                "android.resource://${context.packageName}/${R.raw.alarm1}".toUri()
-            }
-            else -> RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-        }
+        return selectedSound.soundId?.let { soundResourceId ->
+            "android.resource://${context.packageName}/$soundResourceId".toUri()
+        } ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
     }
 
     fun scheduleRepeatingAlarm(intervalMinutes: Int) {

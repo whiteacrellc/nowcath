@@ -19,6 +19,7 @@ class CathAudioManager(private val context: Context) {
 
     private var mediaPlayer: MediaPlayer? = null
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    private var audioFocusRequest: AudioFocusRequest? = null
     private val vibrator = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
         context.getSystemService<VibratorManager>()?.defaultVibrator
     } else {
@@ -47,6 +48,7 @@ class CathAudioManager(private val context: Context) {
                 val focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
                     .setAudioAttributes(audioAttributes)
                     .build()
+                audioFocusRequest = focusRequest
                 audioManager.requestAudioFocus(focusRequest)
             } else {
                 @Suppress("DEPRECATION")
@@ -125,11 +127,16 @@ class CathAudioManager(private val context: Context) {
     private fun playHapticFeedback() {
         try {
             vibrator?.let { v ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val effect = VibrationEffect.createWaveform(
                         longArrayOf(0, 250, 150, 250, 150, 250),
                         -1
                     )
-                v.vibrate(effect)
+                    v.vibrate(effect)
+                } else {
+                    @Suppress("DEPRECATION")
+                    v.vibrate(longArrayOf(0, 250, 150, 250, 150, 250), -1)
+                }
             }
         } catch (e: Exception) {
             // Haptic feedback failed, continue silently
@@ -148,8 +155,15 @@ class CathAudioManager(private val context: Context) {
         try {
             releaseMediaPlayer()
             // Release audio focus
-            @Suppress("DEPRECATION")
-            audioManager.abandonAudioFocus(null)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                audioFocusRequest?.let { request ->
+                    audioManager.abandonAudioFocusRequest(request)
+                }
+            } else {
+                @Suppress("DEPRECATION")
+                audioManager.abandonAudioFocus(null)
+            }
+            audioFocusRequest = null
         } catch (e: Exception) {
             // Silent cleanup failure
         }
