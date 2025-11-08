@@ -1,11 +1,10 @@
 package org.tomw.cathrmdr.ui.theme
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
+import org.tomw.cathrmdr.data.PreferencesManager
 
 enum class AppTheme(val displayName: String) {
     LIGHT("Light"),
@@ -13,17 +12,15 @@ enum class AppTheme(val displayName: String) {
     AUTO("Auto")
 }
 
-class ThemeManager(context: Context) : ViewModel() {
-    private val prefs: SharedPreferences = context.getSharedPreferences("app_theme", Context.MODE_PRIVATE)
+class ThemeManager(context: Context) {
+    private val preferencesManager = PreferencesManager(context)
 
-    var currentTheme by mutableStateOf(
-        AppTheme.values().find { it.name == prefs.getString("theme", AppTheme.DARK.name) } ?: AppTheme.DARK
-    )
+    var currentTheme by mutableStateOf(preferencesManager.theme)
         private set
 
     fun setTheme(theme: AppTheme) {
         currentTheme = theme
-        prefs.edit().putString("theme", theme.name).apply()
+        preferencesManager.theme = theme
     }
 
     fun cycleTheme() {

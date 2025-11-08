@@ -374,7 +374,7 @@ private fun startButtonTapped(
         return
     }
 
-    var interval = parseTimeInterval(intervalText)
+    val interval = parseTimeInterval(intervalText)
     if (interval == null) {
         onError("Please enter time in HH:MM format (e.g., 4:00).")
         return
@@ -383,7 +383,8 @@ private fun startButtonTapped(
     // Check if interval is less than 15 minutes (900 seconds)
     if (interval < 900) {
         onError("The minimum alert time is 15 minutes")
-        interval = 900 // Set to 15 minutes
+        onSuccess(900) // Set to 15 minutes
+        return
     }
 
     onSuccess(interval)
