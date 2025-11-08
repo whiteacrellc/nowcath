@@ -229,7 +229,7 @@ fun PrivacyScreen(
                     iconTint = MaterialTheme.colorScheme.secondary
                 ) {
                     Text(
-                        text = "If you have questions about this privacy policy or our data practices, please contact White Acre Software at support@cathnow.com.",
+                        text = "If you have questions about this privacy policy or our data practices, please contact White Acre Software at support@cathrmdr.com.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface
                     )
