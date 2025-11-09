@@ -110,7 +110,7 @@ fun MainScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 20.dp)
         ) {
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(56.dp))
 
             // Header Section with Hamburger Menu
             Row(
