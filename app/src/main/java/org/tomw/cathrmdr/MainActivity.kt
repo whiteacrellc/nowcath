@@ -104,7 +104,6 @@ fun CathRmdrApp(themeManager: ThemeManager) {
         ) {
             composable("main") {
                 MainScreen(
-                    themeManager = themeManager,
                     onOpenDrawer = {
                         scope.launch {
                             drawerState.open()

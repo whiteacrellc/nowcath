@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "org.tomw.cathrmdr"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.tomw.cathrmdr"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
         // Get API_KEY from environment variable, fallback to gradle.properties, then empty string

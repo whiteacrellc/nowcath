@@ -8,7 +8,7 @@ Cath Rmdr is an Android application that reminds people who use intermittent cat
 
 **Package name**: `org.tomw.cathrmdr`
 **Min SDK**: 29 (Android 10)
-**Target SDK**: 34 (Android 14)
+**Target SDK**: 36 (Android 16)
 
 ## Build Commands
 

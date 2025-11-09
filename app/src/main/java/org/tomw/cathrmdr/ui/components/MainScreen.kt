@@ -34,14 +34,12 @@ import org.tomw.cathrmdr.data.PreferencesManager
 import org.tomw.cathrmdr.data.SoundOption
 import org.tomw.cathrmdr.notifications.CathNotificationManager
 import org.tomw.cathrmdr.ui.theme.AppTheme
-import org.tomw.cathrmdr.ui.theme.ThemeManager
 import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    themeManager: ThemeManager,
     onOpenDrawer: () -> Unit
 ) {
     val context = LocalContext.current
